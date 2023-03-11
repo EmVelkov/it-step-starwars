@@ -1,40 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import {
-  MdPersonSearch,
-  MdMovie,
-  MdDirectionsCarFilled,
-} from 'react-icons/md';
-import { IoMdJet } from 'react-icons/io';
-import { Container } from './styles';
-import logo from '/images/logo.svg';
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from "/images/logo.svg";
+import "./header.style.scss";
 
-export function Header() {
+const Header = () => {
   return (
-    <Container>
+    <header>
       <Link to="/">
         <img src={logo} alt="Logo Star Wars" />
       </Link>
 
       <nav>
-        <Link to="/">
-          <MdPersonSearch size={20} />
-          Personagens
-        </Link>
-
-        <Link to="/films">
-          <MdMovie size={20} />
-          Filmes
-        </Link>
-        <Link to="/starships">
-          <IoMdJet size={20} />
-          Naves Espaciais
-        </Link>
-        <Link to="/vehicles">
-          <MdDirectionsCarFilled size={20} />
-          Veículos
-        </Link>
+        <Link to="/">Movies</Link>
+        <Link to="/people">People</Link>
+        <Link to="/starships">Starships</Link>
+        <Link to="/vehicles">Vehicles</Link>
       </nav>
-    </Container>
+    </header>
   );
-}
+};
+
+export { Header };

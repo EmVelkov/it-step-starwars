@@ -2,36 +2,37 @@ import React, { useCallback, useEffect, useState } from "react";
 import { debounce } from "lodash";
 import { Card } from "../../components/CharacterCard";
 import { InputSearch } from "../../components/InputSearch";
-import { getUrlId } from "../../utils/getUrlId";
 import { api } from "../../services/api";
 import { Loading } from "../../components/Loading";
-import { Movie } from "./models/movies.types";
-import "./home.style.scss";
+import { getUrlId } from "../../utils/getUrlId";
+import { People } from "./models/people.interface";
+import "./people.styles.scss";
 
-export default function Home() {
-  const [movies, setMovies] = useState<Movie[]>([]);
+export default function Films() {
+  const [people, setPeoples] = useState<People[]>([]);
   const [inputSearch, setInputSearch] = useState<string>("");
-  const [page, setPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const getData = useCallback(async () => {
     try {
-      const response = await api.get("films/");
+      const response = await api.get(`people/`);
 
       const returnedData = await response.data;
 
-      setMovies(returnedData.results);
+      setPeoples(returnedData.results);
     } catch {
     } finally {
       setIsLoading(false);
     }
-  }, [page]);
+  }, []);
 
   const getFilteredData = useCallback(async () => {
     try {
-      const response = await api.get(`films/?search=${inputSearch}`);
+      const response = await api.get(`people/?search=${inputSearch}`);
+
       const returnedData = await response.data;
-      setMovies(returnedData.results);
+
+      setPeoples(returnedData.results);
     } catch {
     } finally {
       setIsLoading(false);
@@ -56,36 +57,35 @@ export default function Home() {
 
   return (
     <>
-      <section className="title">
+      <div className="title">
         <h1>
-          <span>Star Wars ( It steps)</span>
+          People - <span>Star Wars</span>
         </h1>
-      </section>
+      </div>
 
-      <section className="header">
+      <div className="header">
         <InputSearch
           type="text"
           placeholder="Search..."
           onChange={(event) => debouncedOnChange(event)}
         />
-      </section>
+      </div>
 
       {isLoading ? (
         <section className="loading">
           <Loading />
-          <span>Loading...</span>
         </section>
       ) : (
-        <section className="movies-section">
-          {movies.map((movie) => (
+        <section className="people-section">
+          {people.map((character) => (
             <Card
-              imageUrl={`https://starwars-visualguide.com/assets/img/films/${getUrlId(
-                movie.url
+              imageUrl={`https://starwars-visualguide.com/assets/img/characters/${getUrlId(
+                character.url
               )}.jpg`}
-              name={movie.title}
-              key={movie.title}
-              id={getUrlId(movie.url)}
-              type="films"
+              name={character.name}
+              key={character.name}
+              id={getUrlId(character.url)}
+              type="characters"
             />
           ))}
         </section>

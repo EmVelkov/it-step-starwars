@@ -24,7 +24,7 @@ export const GlobalStyles = createGlobalStyle`
   body {
     font-size: 16px;
     color: #F5F5F5;
-    background-color: #1B1A17;
+    background-color: #333333;
     -webkit-font-smoothing: antialiased !important;
   }
 
@@ -39,18 +39,5 @@ export const GlobalStyles = createGlobalStyle`
   a {
     color: inherit;
     text-decoration: none;
-  }
-
-    // Scrollbar
-    ::-webkit-scrollbar {
-    width: .5rem;
-  }
-  ::-webkit-scrollbar-track {
-    background: #7D7D7D;
-    border-radius: 4px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #F0A500;
-    border-radius: 4px;
   }
 `;
