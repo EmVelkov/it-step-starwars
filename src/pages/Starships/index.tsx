@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { debounce } from "lodash";
-import { Card } from "../../components/CharacterCard";
+import { Card } from "../../components/Card";
 import { InputSearch } from "../../components/InputSearch";
 import { api } from "../../services/api";
-import { Container } from "./styles";
 import { Loading } from "../../components/Loading";
 import { getUrlId } from "../../utils/getUrlId";
 import { Starship } from "../../types/Starship.types";
@@ -56,7 +55,7 @@ export default function Starships() {
   }, [getFilteredData]);
 
   return (
-    <Container>
+    <>
       <div className="title">
         <h1>
           Starships - <span>Star Wars</span>
@@ -75,7 +74,7 @@ export default function Starships() {
           <Loading />
         </section>
       ) : (
-        <section className="people-section">
+        <section className="cards-section">
           {starships.map((starship) => (
             <Card
               imageUrl={`https://starwars-visualguide.com/assets/img/starships/${getUrlId(
@@ -87,6 +86,6 @@ export default function Starships() {
           ))}
         </section>
       )}
-    </Container>
+    </>
   );
 }

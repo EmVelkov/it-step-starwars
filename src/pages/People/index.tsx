@@ -1,12 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { debounce } from "lodash";
-import { Card } from "../../components/CharacterCard";
+import { Card } from "../../components/Card";
 import { InputSearch } from "../../components/InputSearch";
 import { api } from "../../services/api";
 import { Loading } from "../../components/Loading";
 import { getUrlId } from "../../utils/getUrlId";
 import { PeopleModel } from "./models/people.interface";
-import "./people.styles.scss";
 
 export default function People() {
   const [people, setPeoples] = useState<PeopleModel[]>([]);
@@ -76,7 +75,7 @@ export default function People() {
           <Loading />
         </section>
       ) : (
-        <section className="people-section">
+        <section className="cards-section">
           {people.map((character) => (
             <Card
               key={character.name}

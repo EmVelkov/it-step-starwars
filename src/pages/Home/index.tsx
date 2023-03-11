@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { debounce } from "lodash";
-import { Card } from "../../components/CharacterCard";
+import { Card } from "../../components/Card";
 import { InputSearch } from "../../components/InputSearch";
 import { getUrlId } from "../../utils/getUrlId";
 import { api } from "../../services/api";
@@ -73,17 +73,16 @@ export default function Home() {
       {isLoading ? (
         <section className="loading">
           <Loading />
-          <span>Loading...</span>
         </section>
       ) : (
-        <section className="movies-section">
+        <section className="cards-section">
           {movies.map((movie) => (
             <Card
               imageUrl={`https://starwars-visualguide.com/assets/img/films/${getUrlId(
                 movie.url
               )}.jpg`}
               name={movie.title}
-              key={movie.id}
+              key={movie.name}
             />
           ))}
         </section>

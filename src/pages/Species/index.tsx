@@ -1,12 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { debounce } from "lodash";
-import { Card } from "../../components/CharacterCard";
+import { Card } from "../../components/Card";
 import { InputSearch } from "../../components/InputSearch";
 import { api } from "../../services/api";
 import { Loading } from "../../components/Loading";
 import { getUrlId } from "../../utils/getUrlId";
 import { Specie } from "./models/species.interface";
-import "./species.styles.scss";
 
 export default function Films() {
   const [species, setSpecies] = useState<Specie[]>([]);
@@ -76,7 +75,7 @@ export default function Films() {
           <Loading />
         </section>
       ) : (
-        <section className="species-section">
+        <section className="cards-section">
           {species.map((specie) => (
             <Card
               imageUrl={`https://starwars-visualguide.com/assets/img/species/${getUrlId(

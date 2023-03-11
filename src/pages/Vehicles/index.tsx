@@ -1,22 +1,15 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { debounce } from "lodash";
-import { useSelector } from "react-redux";
-import { Card } from "../../components/CharacterCard";
+import { Card } from "../../components/Card";
 import { InputSearch } from "../../components/InputSearch";
-
 import { api } from "../../services/api";
-
-import { Character } from "../../types/Character.type";
-import { Container } from "./styles";
-import { CompleteDataTypes } from "../../types/CompleteData.types";
 import { Loading } from "../../components/Loading";
 import { getUrlId } from "../../utils/getUrlId";
+import { Vehicle } from "./models/vehicles.interface";
 
 export default function Vehicles() {
-  const [data, setData] = useState<CompleteDataTypes>();
-  const [vehicles, setCharacters] = useState<Character[]>([]);
+  const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [inputSearch, setInputSearch] = useState<string>("");
-  const [page, setPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const getData = useCallback(async () => {
@@ -25,13 +18,12 @@ export default function Vehicles() {
 
       const returnedData = await response.data;
 
-      setData(returnedData);
-      setCharacters(returnedData.results);
+      setVehicles(returnedData.results);
     } catch {
     } finally {
       setIsLoading(false);
     }
-  }, [page]);
+  }, []);
 
   const getFilteredData = useCallback(async () => {
     try {
@@ -39,8 +31,7 @@ export default function Vehicles() {
 
       const returnedData = await response.data;
 
-      setData(returnedData);
-      setCharacters(returnedData.results);
+      setVehicles(returnedData.results);
     } catch {
     } finally {
       setIsLoading(false);
@@ -64,7 +55,7 @@ export default function Vehicles() {
   }, [getFilteredData]);
 
   return (
-    <Container>
+    <>
       <div className="title">
         <h1>
           Vehicles - <span>Star Wars</span>
@@ -84,7 +75,7 @@ export default function Vehicles() {
           <Loading />
         </section>
       ) : (
-        <section className="people-section">
+        <section className="cards-section">
           {vehicles.map((vehicle) => (
             <Card
               imageUrl={`https://starwars-visualguide.com/assets/img/vehicles/${getUrlId(
@@ -96,6 +87,6 @@ export default function Vehicles() {
           ))}
         </section>
       )}
-    </Container>
+    </>
   );
 }

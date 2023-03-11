@@ -13,6 +13,10 @@ export function Card({ imageUrl, name }: ICardProps) {
         className="card_image"
         src={imageUrl}
         alt={`Image ${name} not found.`}
+        onError={({ currentTarget }) => {
+          currentTarget.onerror = null; // prevents looping
+          currentTarget.src = "/images/no-image.svg";
+        }}
       />
       <div className="card_title">
         <p>{name}</p>

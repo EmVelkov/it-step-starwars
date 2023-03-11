@@ -1,12 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { debounce } from "lodash";
-import { Card } from "../../components/CharacterCard";
+import { Card } from "../../components/Card";
 import { InputSearch } from "../../components/InputSearch";
 import { api } from "../../services/api";
 import { Loading } from "../../components/Loading";
 import { getUrlId } from "../../utils/getUrlId";
 import { Planet } from "./models/planets.interface";
-import "./planets.styles.scss";
 
 export default function Planets() {
   const [planets, setplanets] = useState<Planet[]>([]);
@@ -76,7 +75,7 @@ export default function Planets() {
           <Loading />
         </section>
       ) : (
-        <section className="planets-section">
+        <section className="cards-section">
           {planets.map((planet) => (
             <Card
               imageUrl={`https://starwars-visualguide.com/assets/img/planets/${getUrlId(
