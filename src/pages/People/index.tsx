@@ -5,11 +5,11 @@ import { InputSearch } from "../../components/InputSearch";
 import { api } from "../../services/api";
 import { Loading } from "../../components/Loading";
 import { getUrlId } from "../../utils/getUrlId";
-import { People } from "./models/people.interface";
+import { PeopleModel } from "./models/people.interface";
 import "./people.styles.scss";
 
-export default function Films() {
-  const [people, setPeoples] = useState<People[]>([]);
+export default function People() {
+  const [people, setPeoples] = useState<PeopleModel[]>([]);
   const [inputSearch, setInputSearch] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -79,13 +79,11 @@ export default function Films() {
         <section className="people-section">
           {people.map((character) => (
             <Card
+              key={character.name}
               imageUrl={`https://starwars-visualguide.com/assets/img/characters/${getUrlId(
                 character.url
               )}.jpg`}
               name={character.name}
-              key={character.name}
-              id={getUrlId(character.url)}
-              type="characters"
             />
           ))}
         </section>

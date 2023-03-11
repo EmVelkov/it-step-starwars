@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 import { debounce } from "lodash";
 import { useSelector } from "react-redux";
 import { Card } from "../../components/CharacterCard";
@@ -12,7 +11,6 @@ import { Container } from "./styles";
 import { CompleteDataTypes } from "../../types/CompleteData.types";
 import { Loading } from "../../components/Loading";
 import { getUrlId } from "../../utils/getUrlId";
-import { RootState } from "../../store";
 
 export default function Vehicles() {
   const [data, setData] = useState<CompleteDataTypes>();
@@ -20,9 +18,6 @@ export default function Vehicles() {
   const [inputSearch, setInputSearch] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isFavouriteSelected, setIsFavouriteSelected] =
-    useState<boolean>(false);
-  const vehiclesFavourite = useSelector((state: RootState) => state.vehicle);
 
   const getData = useCallback(async () => {
     try {
@@ -85,11 +80,11 @@ export default function Vehicles() {
       </div>
 
       {isLoading ? (
-        <div className="loading">
+        <section className="loading">
           <Loading />
-        </div>
-      ) : !isFavouriteSelected ? (
-        <div className="cards">
+        </section>
+      ) : (
+        <section className="people-section">
           {vehicles.map((vehicle) => (
             <Card
               imageUrl={`https://starwars-visualguide.com/assets/img/vehicles/${getUrlId(
@@ -97,27 +92,9 @@ export default function Vehicles() {
               )}.jpg`}
               name={vehicle.name}
               key={vehicle.name}
-              id={getUrlId(vehicle.url)}
-              type="vehicles"
-              isFavourited={vehiclesFavourite.some(
-                (dataStore) => dataStore.name === vehicle.name
-              )}
             />
           ))}
-        </div>
-      ) : (
-        <div className="cards">
-          {vehiclesFavourite.map((vehicle) => (
-            <Card
-              imageUrl={`https://starwars-visualguide.com/assets/img/vehicles/${vehicle.id}.jpg`}
-              name={vehicle.name}
-              key={vehicle.name}
-              id={vehicle.id}
-              type="vehicles"
-              isFavourited
-            />
-          ))}
-        </div>
+        </section>
       )}
     </Container>
   );

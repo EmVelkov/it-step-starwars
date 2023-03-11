@@ -1,24 +1,5 @@
-import React, { useState } from "react";
-import { MdStarBorder, MdStar } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import React from "react";
 import "./card.style.scss";
-import {
-  setFavouriteCharacter,
-  removeFavouriteCharacter,
-} from "../../store/slices/Character.slice";
-import {
-  removeFavoriteFilm,
-  setFilmFavourite,
-} from "../../store/slices/Film.slice";
-import {
-  removeFavouriteStarship,
-  setStarshipFavourite,
-} from "../../store/slices/Starship.slice";
-import {
-  removeFavouriteVehicle,
-  setVehicleFavourite,
-} from "../../store/slices/Vehicle.slice";
 
 interface ICardProps {
   imageUrl: string;

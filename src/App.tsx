@@ -5,6 +5,8 @@ import People from "./pages/People";
 import Home from "./pages/Home";
 import Starships from "./pages/Starships";
 import Vehicles from "./pages/Vehicles";
+import Species from "./pages/Species";
+import Planets from "./pages/Planets";
 
 function App() {
   return (
@@ -18,9 +20,14 @@ function App() {
       <Route path="/starships" element={<PageLayout />}>
         <Route index element={<Starships />} />
       </Route>
-
       <Route path="/vehicles" element={<PageLayout />}>
         <Route index element={<Vehicles />} />
+      </Route>
+      <Route path="/species" element={<PageLayout />}>
+        <Route index element={<Species />} />
+      </Route>
+      <Route path="/planets" element={<PageLayout />}>
+        <Route index element={<Planets />} />
       </Route>
     </Routes>
   );

@@ -3,23 +3,23 @@ import { debounce } from "lodash";
 import { Card } from "../../components/CharacterCard";
 import { InputSearch } from "../../components/InputSearch";
 import { api } from "../../services/api";
-import { Container } from "./styles";
 import { Loading } from "../../components/Loading";
 import { getUrlId } from "../../utils/getUrlId";
-import { Starship } from "../../types/Starship.types";
+import { Specie } from "./models/species.interface";
+import "./species.styles.scss";
 
-export default function Starships() {
-  const [starships, setStarships] = useState<Starship[]>([]);
+export default function Films() {
+  const [species, setSpecies] = useState<Specie[]>([]);
   const [inputSearch, setInputSearch] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const getData = useCallback(async () => {
     try {
-      const response = await api.get("starships/");
+      const response = await api.get(`species/`);
 
       const returnedData = await response.data;
 
-      setStarships(returnedData.results);
+      setSpecies(returnedData.results);
     } catch {
     } finally {
       setIsLoading(false);
@@ -28,11 +28,11 @@ export default function Starships() {
 
   const getFilteredData = useCallback(async () => {
     try {
-      const response = await api.get(`starships/?search=${inputSearch}`);
+      const response = await api.get(`species/?search=${inputSearch}`);
 
       const returnedData = await response.data;
 
-      setStarships(returnedData.results);
+      setSpecies(returnedData.results);
     } catch {
     } finally {
       setIsLoading(false);
@@ -56,10 +56,10 @@ export default function Starships() {
   }, [getFilteredData]);
 
   return (
-    <Container>
+    <>
       <div className="title">
         <h1>
-          Starships - <span>Star Wars</span>
+          Species - <span>Star Wars</span>
         </h1>
       </div>
 
@@ -70,23 +70,24 @@ export default function Starships() {
           onChange={(event) => debouncedOnChange(event)}
         />
       </div>
+
       {isLoading ? (
         <section className="loading">
           <Loading />
         </section>
       ) : (
-        <section className="people-section">
-          {starships.map((starship) => (
+        <section className="species-section">
+          {species.map((specie) => (
             <Card
-              imageUrl={`https://starwars-visualguide.com/assets/img/starships/${getUrlId(
-                starship.url
+              imageUrl={`https://starwars-visualguide.com/assets/img/species/${getUrlId(
+                specie.url
               )}.jpg`}
-              name={starship.name}
-              key={starship.name}
+              name={specie.name}
+              key={specie.name}
             />
           ))}
         </section>
       )}
-    </Container>
+    </>
   );
 }

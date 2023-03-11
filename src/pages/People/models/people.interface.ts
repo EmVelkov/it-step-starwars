@@ -1,4 +1,4 @@
-export interface People {
+export interface PeopleModel {
     name: string;
     height: string;
     mass: string;

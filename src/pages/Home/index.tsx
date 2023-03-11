@@ -83,9 +83,7 @@ export default function Home() {
                 movie.url
               )}.jpg`}
               name={movie.title}
-              key={movie.title}
-              id={getUrlId(movie.url)}
-              type="films"
+              key={movie.id}
             />
           ))}
         </section>
