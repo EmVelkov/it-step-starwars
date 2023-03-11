@@ -58,11 +58,11 @@ export default function Home() {
     <>
       <section className="title">
         <h1>
-          <span>Star Wars ( It steps)</span>
+          Star Wars <span className="title_sub">( IT STEP)</span>
         </h1>
       </section>
 
-      <section className="header">
+      <section className="search">
         <InputSearch
           type="text"
           placeholder="Search..."

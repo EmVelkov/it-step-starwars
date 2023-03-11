@@ -62,7 +62,7 @@ export default function Vehicles() {
         </h1>
       </div>
 
-      <div className="header">
+      <div className="search">
         <InputSearch
           type="text"
           placeholder="Search..."

@@ -9,6 +9,8 @@ body {
     font-size: 16px;
     color: #F5F5F5;
     background-color: #333333;
+    padding-left: 15px;
+    padding-right: 15px;
 
     button {
         cursor: pointer;
@@ -19,14 +21,28 @@ body {
         text-decoration: none;
     }
 
+    .title {
+        margin-bottom: 20px;
+    }
+
     .cards-section {
         margin-top: 50px;
         margin-bottom: 10px;
         display: flex;
         flex-direction: row;
-        align-content: space-around;
         flex-wrap: wrap;
         justify-content: start;
     }
 
+    .loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2rem;
+
+        >span {
+            font-size: 2rem;
+        }
+    }
 }

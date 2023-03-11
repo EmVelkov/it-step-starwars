@@ -10,7 +10,7 @@ const Header = () => {
         <img src={logo} alt="Logo Star Wars" />
       </Link>
 
-      <nav>
+      <nav className="navigation">
         <Link to="/">Movies</Link>
         <Link to="/people">People</Link>
         <Link to="/starships">Starships</Link>

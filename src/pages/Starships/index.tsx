@@ -5,7 +5,7 @@ import { InputSearch } from "../../components/InputSearch";
 import { api } from "../../services/api";
 import { Loading } from "../../components/Loading";
 import { getUrlId } from "../../utils/getUrlId";
-import { Starship } from "../../types/Starship.types";
+import { Starship } from "./models/starships.interface";
 
 export default function Starships() {
   const [starships, setStarships] = useState<Starship[]>([]);
@@ -62,7 +62,7 @@ export default function Starships() {
         </h1>
       </div>
 
-      <div className="header">
+      <div className="search">
         <InputSearch
           type="text"
           placeholder="Search..."
