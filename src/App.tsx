@@ -1,8 +1,7 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { PageLayout } from "./components/PageLayout";
-import People from "./pages/People";
 import Home from "./pages/Home";
+import People from "./pages/People";
 import Starships from "./pages/Starships";
 import Vehicles from "./pages/Vehicles";
 import Species from "./pages/Species";

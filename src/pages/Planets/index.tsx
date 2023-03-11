@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { debounce } from "lodash";
 import { Card } from "../../components/Card";
-import { InputSearch } from "../../components/InputSearch";
 import { api } from "../../services/api";
 import { Loading } from "../../components/Loading";
 import { getUrlId } from "../../utils/getUrlId";
@@ -63,7 +62,7 @@ export default function Planets() {
       </div>
 
       <div className="search">
-        <InputSearch
+        <input
           type="text"
           placeholder="Search..."
           onChange={(event) => debouncedOnChange(event)}

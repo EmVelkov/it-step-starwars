@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { debounce } from "lodash";
 import { Card } from "../../components/Card";
-import { InputSearch } from "../../components/InputSearch";
 import { getUrlId } from "../../utils/getUrlId";
 import { api } from "../../services/api";
 import { Loading } from "../../components/Loading";
@@ -11,7 +10,6 @@ import "./home.style.scss";
 export default function Home() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [inputSearch, setInputSearch] = useState<string>("");
-  const [page, setPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const getData = useCallback(async () => {
@@ -25,7 +23,7 @@ export default function Home() {
     } finally {
       setIsLoading(false);
     }
-  }, [page]);
+  }, []);
 
   const getFilteredData = useCallback(async () => {
     try {
@@ -63,7 +61,7 @@ export default function Home() {
       </section>
 
       <section className="search">
-        <InputSearch
+        <input
           type="text"
           placeholder="Search..."
           onChange={(event) => debouncedOnChange(event)}
